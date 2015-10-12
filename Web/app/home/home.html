@@ -1,0 +1,31 @@
+<wan-links ttl="'Home'"></wan-links>
+
+<section class="content">
+	<img class="img-responsive pImg" src="img/WelcomeToMyWebpage4.png">
+	<hr />
+</section>
+
+
+<div class="section">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h4>“The only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle. As with all matters of the heart, you know when you find it.”
+                <br><br>~ Steve Jobs</h4>
+                <hr />
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="port in hc.portfolio">
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa {{port.icon}} fa-stack-1x fa-inverse"></i>
+                </span><br>
+                <a href="{{port.link}}" data-toggle="tooltip">{{port.name}}</a>
+            </li>
+
+
+        </div>
+    </div>
+</div>
+

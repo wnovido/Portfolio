@@ -1,0 +1,153 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+
+.button {
+    -moz-appearance: button;
+    /* Firefox */
+    -webkit-appearance: button;
+    /* Safari and Chrome */
+    padding: 10px;
+    margin: 10px;
+    width: 70px;
+}
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 200px;
+    height: 65px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+
+
+
+h1 {
+    color: #8a8a8a;
+    font-size: 30px;
+}
+
+h1 i {
+    color: #9a9a9a;
+    font-size: 24px;
+}
+
+h2.directive {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+.color-box {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+/**pageable icons*/
+.fu-search:before,
+.fu-arrow-left:before,
+.fu-angle-l:before,
+.fu-arrow-right:before,
+.fu-angle-r:before {
+    font-family: 'Glyphicons Halflings';
+}
+
+.fu-search:before {
+    content: "\e003";
+}
+
+.fu-arrow-left:before {
+    content: "\e091";
+}
+
+.fu-arrow-right:before {
+    content: "\e092";
+}
+
+.fu-angle-l:before {
+    content: "\e257";
+}
+
+.fu-angle-r:before {
+    content: "\e258";
+}
+
+.text-block {
+    display: block;
+}
+
+.text-lg {
+    font-size: 1.3em;
+}
+
+.text-md {
+    font-size: 1.1em;
+}
+
+.text-sm {
+    font-size: 0.9em;
+}
+
+.text-xs {
+    font-size: 0.7em;
+}
+
+.gray {
+    color: #aaa;
+}
+
+.navbar-toggle {
+    margin-right: 0;
+}
+[class*="col-sm"] {
+    margin-bottom:10px;
+}
+@media (max-width: 757) {
+    [class*="col-sm"] + [class*="col-sm"] {
+        margin-bottom:10px;
+    }
+}
+
+
+
+.pImg {
+  width: 100%;
+  height: 600px;
+  max-height: 600px;
+}
+
