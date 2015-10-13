@@ -17,7 +17,9 @@ angular.module('myApp', [
   'myApp.works',
   'myApp.works_services',
   'myApp.contactme',
-  'myApp.contactme_services'
+  'myApp.contactme_services',
+  'myApp.skills',
+  'myApp.skills_services'
 ])
 
 .run(['$templateCache', '$cacheFactory', '$rootScope',

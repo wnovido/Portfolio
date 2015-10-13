@@ -15,20 +15,14 @@
                 <br><br>~ Steve Jobs</h4>
                 <hr />
             </div>
-            <div id="content">
-                <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="port in hc.portfolio">
 
-                    <span class="fa-stack fa-3x">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa {{port.icon}} fa-stack-1x fa-inverse"></i>
-                    </span><br>
-                    <a href="{{port.link}}" data-toggle="tooltip">{{port.name}}</a>
-                    
-                </div>
-
+            <div class="col-lg-3 col-md-3 col-sm-4 text-center" ng-repeat="port in hc.portfolio">
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa {{port.icon}} fa-stack-1x fa-inverse"></i>
+                </span><br>
+                <a href="{{port.link}}" data-toggle="tooltip">{{port.name}}</a>
             </div>
-
-
         </div>
     </div>
 </div>

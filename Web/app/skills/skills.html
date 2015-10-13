@@ -1,0 +1,17 @@
+<wan-links ttl="'Skills'"></wan-links>
+
+<div class="section">    
+    <div class="container">
+        <h1>{{kc.params.foo}}</h1>
+        <div class="row">
+            <div class="text-center col-lg-3 col-md-3 col-sm-4" ng-repeat="skill in kc.skills">
+                <span class="fa-stack fa-3x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa {{skill.icon}} fa-stack-1x fa-inverse"></i>                        
+                </span><br>
+                {{skill.name}}
+            </div>
+        </div>
+    </div>
+</div>
+
