@@ -151,3 +151,16 @@ h2.directive {
   max-height: 600px;
 }
 
+
+
+
+
+#content {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#content2 {
+  width: 310px;
+  margin: 0 auto;
+}

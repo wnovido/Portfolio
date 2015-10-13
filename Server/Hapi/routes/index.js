@@ -9,6 +9,6 @@
 exports.init = function(server) {
   console.log('Loading routes');
 
-  require('./references')(server);
+  require('./skills')(server);
   require('./portfolio')(server);
 };

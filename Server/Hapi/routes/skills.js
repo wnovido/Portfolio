@@ -2,11 +2,11 @@
 
 var Boom = require('boom');                                  // HTTP Errors
 var Joi = require('joi');                                   // Validation
-var Portfolio = require('../models/portfolio').Portfolio;   // Mongoose ODM
+var Skill = require('../models/skills').Skill;   // Mongoose ODM
 
 // Exports = exports? Huh? Read: http://stackoverflow.com/a/7142924/5210
 module.exports = exports = function (server) {
-    console.log('Loading portfolio routes');
+    console.log('Loading skills routes');
     exports.index(server);
     exports.create(server);
     exports.show(server);
@@ -16,21 +16,21 @@ module.exports = exports = function (server) {
 
 
 /**
- * GET /portfolio
- * Gets all the portfolio from MongoDb and returns them.
+ * GET /skills
+ * Gets all the skills from MongoDb and returns them.
  *
  * @param server - The Hapi Server
  */
 exports.index = function (server) {
-    // GET /portfolio
+    // GET /skills
     server.route({
         method: 'GET',
-        path: '/portfolio',
+        path: '/skills',
         handler: function (request, reply) {
 
-            Portfolio.find().exec(function (err, portfolio) {
+            Skill.find().exec(function (err, skills) {
                 if (!err) {
-                    reply(portfolio);
+                    reply(skills);
                 } else {
                     reply(Boom.badImplementation(err)); // 500 error
                 }
@@ -41,27 +41,27 @@ exports.index = function (server) {
 
 /**
  * POST /new
- * Creates a new portfolio.
+ * Creates a new skill.
  *
  * @param server - The Hapi Server
  */
 exports.create = function (server) {
-    // POST /portfolio
-    var portfolio;
+    // POST /skill
+    var skill;
 
     server.route({
         method: 'POST',
-        path: '/portfolio',
+        path: '/skill',
         handler: function (request, reply) {
 
-            portfolio = new Portfolio();
-            portfolio.name = request.payload.name;
-            portfolio.icon = request.payload.icon;
-            portfolio.link = request.payload.link;
+            skill = new Skill();
+            skill.portfolio = request.payload.portfolio;
+            skill.name = request.payload.name;
+            skill.icon = request.payload.icon;
 
-            portfolio.save(function (err) {
+            skill.save(function (err) {
                 if (!err) {
-                    reply(portfolio).created('/portfolio/' + portfolio._id);    // HTTP 201
+                    reply(skill).created('/skill/' + skill._id);    // HTTP 201
                 } else {
                     reply(Boom.forbidden(getErrorMessageFrom(err))); // HTTP 403
                 }
@@ -71,8 +71,8 @@ exports.create = function (server) {
 };
 
 /**
- * GET /portfolio/{id}
- * Gets the portfolio based upon the {id} parameter.
+ * GET /skill/{id}
+ * Gets the skill based upon the {id} parameter.
  *
  * @param server - The Hapi Server
  */
@@ -80,7 +80,7 @@ exports.show = function (server) {
 
     server.route({
         method: 'GET',
-        path: '/portfolio/{id}',
+        path: '/skill/{id}',
         config: {
             validate: {
                 path: {
@@ -89,9 +89,9 @@ exports.show = function (server) {
             }
         },
         handler: function (request, reply) {
-            Portfolio.findById(request.params.id, function (err, portfolio) {
-                if (!err && portfolio) {
-                    reply(portfolio);
+            Skill.findById(request.params.id, function (err, skill) {
+                if (!err && skill) {
+                    reply(skill);
                 } else if (err) {
                     // Log it, but don't show the user, don't want to expose ourselves (think security)
                     console.log(err);
@@ -106,15 +106,15 @@ exports.show = function (server) {
 };
 
 /**
- * DELETE /portfolio/{id}
- * Deletes a portfolio, based on the portfolio id in the path.
+ * DELETE /skill/{id}
+ * Deletes a skill, based on the skill id in the path.
  *
  * @param server - The Hapi Server
  */
 exports.remove = function (server) {
     server.route({
         method: 'DELETE',
-        path: '/portfolio/{id}',
+        path: '/skill/{id}',
         config: {
             validate: {
                 path: {
@@ -123,16 +123,16 @@ exports.remove = function (server) {
             }
         },
         handler: function (request, reply) {
-            Portfolio.findById(request.params.id, function(err, portfolio) {
-                if(!err && portfolio) {
-                    portfolio.remove();
-                    reply({ message: "Portfolio deleted successfully"});
+            Skill.findById(request.params.id, function(err, skill) {
+                if(!err && skill) {
+                    skill.remove();
+                    reply({ message: "Skill deleted successfully"});
                 } else if(!err) {
                     // Couldn't find the object.
                     reply(Boom.notFound());
                 } else {
                     console.log(err);
-                    reply(Boom.badRequest("Could not delete portfolio"));
+                    reply(Boom.badRequest("Could not delete skill"));
                 }
             });
         }
