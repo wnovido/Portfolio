@@ -3,6 +3,7 @@
 var Boom = require('boom');                                  // HTTP Errors
 var Joi = require('joi');                                   // Validation
 var Skill = require('../models/skills').Skill;   // Mongoose ODM
+var Portfolio = require('../models/portfolio').Portfolio;   // Mongoose ODM
 
 // Exports = exports? Huh? Read: http://stackoverflow.com/a/7142924/5210
 module.exports = exports = function (server) {
@@ -26,15 +27,25 @@ exports.index = function (server) {
     server.route({
         method: 'GET',
         path: '/skills',
-        handler: function (request, reply) {
+        handler: function (request, reply) {            
 
-            Skill.find().exec(function (err, skills) {
+            Portfolio.find({name: request.query.portfolioName}).exec(function (err, portfolio) {
                 if (!err) {
-                    reply(skills);
+                    // console.log(portfolio[0]._id);
+                    var portfolio_id = portfolio[0]._id;
+                    Skill.find({portfolio: portfolio_id}).exec(function (err, skills) {
+                        if (!err) {
+                            reply(skills);
+                        } else {
+                            reply(Boom.badImplementation(err)); // 500 error
+                        }
+                    });
                 } else {
                     reply(Boom.badImplementation(err)); // 500 error
                 }
             });
+
+
         }
     });
 };

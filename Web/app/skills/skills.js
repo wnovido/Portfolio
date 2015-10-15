@@ -4,8 +4,9 @@
 function SkillControllerFunction (SkillService, $loading, $timeout, $q, $alert, $stateParams) {
     var this_skills = this;
     this_skills.params = $stateParams;
-    
-    SkillService.query().$promise
+    this_skills.foo = $stateParams.foo;
+
+    SkillService.query({portfolioName: this_skills.foo}).$promise
     .then(function getSkills(response) {
             this_skills.skills = response;
         })
